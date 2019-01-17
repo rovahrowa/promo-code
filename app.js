@@ -13,8 +13,9 @@ app.use(express.json());
 
 app.use('/promocode', promcodeAPI);
 app.use('/events', eventAPI);
+app.use('*', (req,res)=>res.send({status: 'Online'}))
 
 app.listen(8090, () => {
     logger.info('App started on http://localhost:8090')
-})
+});
 
