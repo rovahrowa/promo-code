@@ -1,0 +1,26 @@
+{
+  "name": "promo-code",
+  "version": "1.0.0",
+  "description": "prompcode-test",
+  "main": "app.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/zemuldo/promo-code.git"
+  },
+  "keywords": [
+    "promocode"
+  ],
+  "author": "Zemuldo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zemuldo/promo-code/issues"
+  },
+  "homepage": "https://github.com/zemuldo/promo-code#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4"
+  }
+}
