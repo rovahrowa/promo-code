@@ -21,6 +21,9 @@
   "homepage": "https://github.com/zemuldo/promo-code#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.4.0",
+    "mongodb": "^2.2.35",
+    "winston": "^2.4.2"
   }
 }
