@@ -1,11 +1,11 @@
 module.exports = (req, res, next) => {
     const allowHeaders = ['Origin', 'Accept', 'Accept-Version', 'Content-Length',
       'Content-MD5', 'Content-Type', 'Date', 'X-Api-Version', 'X-Response-Time',
-      'X-PINGOTHER', 'X-CSRF-Token', 'X-Session-Object', 'Authorization','ztoken'
+      'X-PINGOTHER', 'X-CSRF-Token', 'X-Session-Object'
     ];
   
     const allowMethods = ['get', 'post', 'options'];
-    const allowedOrigins = ['*']; // , 'http://dash.mobitill.com'];
+    const allowedOrigins = ['*'];
   
     res.setHeader('Access-Control-Allow-Credentials', 'true');
     res.setHeader('Access-Control-Allow-Headers', allowHeaders.join(', '));
