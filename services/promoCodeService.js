@@ -3,6 +3,7 @@ const randomCode = require('../tools/randomCode');
 const { ObjectID } = require('mongodb')
 const { isCodeActive, signCode } = require('../tools/authCrypt');
 const getRadiusBetween = require('../tools/getRadiusBetween')
+const generatePolyline = require('../tools/generatePolyLine');
 
 module.exports = {
     generate: async (eventId, value, expiryInHours, radius) => {
@@ -46,7 +47,7 @@ module.exports = {
         const _code = await db.cols.codes.findOne({ code: parseInt(code) });
         if (!_code) throw { message: 'invalid code', code: 400 };
         const radius = getRadiusBetween(origin[0], origin[1], destination[0], destination[1])
-        if (radius > _code.radius) throw { message: `this code can only be used within ${_code.radius} kms from the location of event location`, code: 400 };
-        return _code;
+        if (radius > _code.radius) throw { message: `this code can only be used within ${_code.radius} kms from the location of event location, you are ${parseInt(radius - _code.radius)} km away`, code: 400 };
+        return {code: _code, polyline: generatePolyline(origin, destination)};
     }
 }

@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/zemuldo/promo-code#readme",
   "dependencies": {
+    "@google/maps": "^0.5.5",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "jsonwebtoken": "^8.4.0",
