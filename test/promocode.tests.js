@@ -200,4 +200,25 @@ describe('Promocode API', function () {
             });
     })
 
+    it('Should fail to validate promo code', function (done) {
+        request.post('/promocode/validate')
+            .set('Accept', 'application/json')
+            .send({
+                "origin":[2.3956,32.4693],
+                "destination":[1.3956,38.9693],
+                "code": promocode
+            })
+            .end((error, response) => {
+                if (error) throw error;
+                expect('Content-Type', /json/);
+                expect(response).to.have.status(400);
+                expect(response.body).not.to.be.empty;
+                expect(response.body).to.be.an('object');
+                expect(response.body).to.have.property('error');
+                expect(response.body.error).to.have.property('message')
+                expect(response.body.error.message).to.eql('this code can only be used within 500 kms from the location of event location, you are 230 km away')
+                done();
+            });
+    })
+
 });
