@@ -20,8 +20,8 @@ db.open((e) => {
     } else {
         db.collection('code').createIndex({ ttl: 1 }, { expireAfterSeconds: 1.577e+7 }).then(() => {
             logger.info('Created TTL index of 6 months on codes')
-        }, (e) => logger.info('TTL index exists on codes'))
-        logger.info(`DB Connected to Host ${dbHost}, DB ${dbName}`)
+        }, (e) => logger.info('TTL index exists on codes'));
+        logger.info(`DB Connected to Host ${dbHost}, DB ${dbName}`);
     }
 });
 
