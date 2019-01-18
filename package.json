@@ -4,7 +4,9 @@
   "description": "prompcode-test",
   "main": "app.js",
   "scripts": {
-    "test": "NODE_ENV=test PORT=8099 DB_NAME=posone_test nyc mocha --exit --timeout=3000"
+    "test": "NODE_ENV=test PORT=8099 DB_NAME=posone_test nyc mocha --exit --timeout=3000",
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
   "repository": {
     "type": "git",
