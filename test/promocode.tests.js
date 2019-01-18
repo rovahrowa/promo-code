@@ -195,6 +195,7 @@ describe('Promocode API', function () {
                 expect(response.body.data).to.have.property('code');
                 expect(response.body.data.code).to.be.an('object');
                 expect(response.body.data.code.eventId).to.eql(eventId);
+                expect(response.body.data.polyline).to.eql('o{rMctdeE?_t`B');
                 done();
             });
     })
