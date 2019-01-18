@@ -38,7 +38,7 @@ router.post('/validate', async (req, res) => {
         if(!origin || !destination) throw {message: 'missing origin or destination location data'}
         if(!origin[0] || !destination[0]) throw {message: 'invalid origin or destination location data'}
         const _code = await promoCodeService.validate(code, origin, destination);
-        res.send({ data: { _code } })
+        res.send({ data: _code })
     } catch (e) {
         res.status(e.code || 400).send({ error: { message: e.message || 'server error!' } })
     }

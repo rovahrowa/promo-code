@@ -175,4 +175,28 @@ describe('Promocode API', function () {
                 done();
             });
     })
+
+    it('Should validate promo code', function (done) {
+        request.post('/promocode/validate')
+            .set('Accept', 'application/json')
+            .send({
+                "origin":[2.3956,32.4693],
+                "destination":[2.3956,32.9693],
+                "code": promocode
+            })
+            .end((error, response) => {
+                if (error) throw error;
+                expect('Content-Type', /json/);
+                expect(response).to.have.status(200);
+                expect(response.body).not.to.be.empty;
+                expect(response.body).to.be.an('object');
+                expect(response.body).to.have.property('data');
+                expect(response.body.data).to.be.an('object');
+                expect(response.body.data).to.have.property('code');
+                expect(response.body.data.code).to.be.an('object');
+                expect(response.body.data.code.eventId).to.eql(eventId);
+                done();
+            });
+    })
+
 });
