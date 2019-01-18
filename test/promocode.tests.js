@@ -7,7 +7,7 @@ chai.use(require('chai-http'));
 chai.use(require('chai-json'));
 const app = require('../app');
 const request = chai.request.agent(app);
-let eventId
+let eventId, promocode, promocodeId
 
 describe('Promocode API', function () {
 
@@ -102,6 +102,76 @@ describe('Promocode API', function () {
                 expect(response.body.data.code).to.be.an('object');
                 expect(response.body.data.code).to.have.property('ops')
                 expect(response.body.data.code.ops[0].eventId).to.eql(eventId)
+                promocode = response.body.data.code.ops[0].code
+                promocodeId = response.body.data.code.ops[0]._id
+                done();
+            });
+    })
+
+    it('Should deactivate promocode using code', function (done) {
+        request.patch(`/promocode/${promocode}/deactivate`)
+            .set('Accept', 'application/json')
+            .end((error, response) => {
+                if (error) throw error;
+                expect('Content-Type', /json/);
+                expect(response).to.have.status(200);
+                expect(response.body).not.to.be.empty;
+                expect(response.body).to.be.an('object');
+                expect(response.body).to.have.property('data');
+                expect(response.body.data).to.have.property('code');
+                expect(response.body.data.code).to.be.an('object');
+                expect(response.body.data.code.nModified).to.eql(1);
+                done();
+            });
+    })
+
+    it('Should activate promocode using code', function (done) {
+        request.patch(`/promocode/${promocode}/activate`)
+            .set('Accept', 'application/json')
+            .end((error, response) => {
+                if (error) throw error;
+                expect('Content-Type', /json/);
+                expect(response).to.have.status(200);
+                expect(response.body).not.to.be.empty;
+                expect(response.body).to.be.an('object');
+                expect(response.body).to.have.property('data');
+                expect(response.body.data).to.have.property('code');
+                expect(response.body.data.code).to.be.an('object');
+                expect(response.body.data.code.nModified).to.eql(1);
+                done();
+            });
+    })
+
+    it('Should deactivate promocode using codeid', function (done) {
+        request.patch(`/promocode/${promocodeId}/deactivate`)
+            .set('Accept', 'application/json')
+            .end((error, response) => {
+                if (error) throw error;
+                expect('Content-Type', /json/);
+                expect(response).to.have.status(200);
+                expect(response.body).not.to.be.empty;
+                expect(response.body).to.be.an('object');
+                expect(response.body).to.have.property('data');
+                expect(response.body.data).to.have.property('code');
+                expect(response.body.data.code).to.be.an('object');
+                expect(response.body.data.code.nModified).to.eql(1);
+                done();
+            });
+    })
+
+    it('Should activate promocode using codeid', function (done) {
+        request.patch(`/promocode/${promocodeId}/activate`)
+            .set('Accept', 'application/json')
+            .end((error, response) => {
+                if (error) throw error;
+                expect('Content-Type', /json/);
+                expect(response).to.have.status(200);
+                expect(response.body).not.to.be.empty;
+                expect(response.body).to.be.an('object');
+                expect(response.body).to.have.property('data');
+                expect(response.body.data).to.have.property('code');
+                expect(response.body.data.code).to.be.an('object');
+                expect(response.body.data.code.nModified).to.eql(1);
                 done();
             });
     })
