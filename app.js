@@ -15,7 +15,8 @@ app.use('/promocode', promcodeAPI);
 app.use('/events', eventAPI);
 app.use('*', (req,res)=>res.send({status: 'Online'}))
 
-app.listen(8090, () => {
+app.listen(process.env.PORT || 8090, () => {
     logger.info('App started on http://localhost:8090')
 });
 
+module.exports = app;

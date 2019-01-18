@@ -4,7 +4,7 @@
   "description": "prompcode-test",
   "main": "app.js",
   "scripts": {
-    "test": "npm test"
+    "test": "NODE_ENV=test PORT=8099 DB_NAME=posone_test nyc mocha --exit --timeout=3000"
   },
   "repository": {
     "type": "git",
@@ -26,5 +26,14 @@
     "jsonwebtoken": "^8.4.0",
     "mongodb": "^2.2.35",
     "winston": "^2.4.2"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.1",
+    "chai-json": "^1.0.0",
+    "chai-subset": "^1.6.0",
+    "mocha": "^5.2.0",
+    "nyc": "^13.1.0",
+    "supertest": "^3.4.1"
   }
 }
